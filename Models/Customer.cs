@@ -19,7 +19,7 @@ namespace Space.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Display(Name = "Enter Phone Number Including No Area Code. No Dashes")]
+        [Display(Name = "Enter Phone Number.No Dashes")]
         public int PhoneNumber { get; set; }
 
         [Display(Name = "Enter Your Age")]
@@ -37,6 +37,7 @@ namespace Space.Models
 
         public string IdentityUserId { get; set; }
 
+        [Display(Name = "Destination")]
         public IdentityUser IdentityUser { get; set; }
     }
 }
