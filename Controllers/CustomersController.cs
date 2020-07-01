@@ -24,19 +24,23 @@ namespace Space.Controllers
         // GET: CustomersController
         public async Task<IActionResult> Index()
         {
-            var customers = _context.Customers.Include(c => c.IdentityUser);
+            var customers = _context.Customers.ToList();
             return View(customers);
         }
 
         // GET: CustomersController/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            var customer = _context.Customers.Include(c => c.IdentityUser).ToList();
-            return View(customer);
+            {
+                var customer = _context.Customers.Include(c => c.IdentityUser).ToList();
+
+
+                return View(customer);
+            }
         }
 
         // GET: CustomersController/Create
-        IActionResult Create()
+        public IActionResult Create()
         {
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
