@@ -19,13 +19,13 @@ namespace Space.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Display(Name = "Enter Phone Number.No Dashes")]
+        [Display(Name = "Phone Number")]
         public int PhoneNumber { get; set; }
 
         [Display(Name = "Enter Your Age")]
         public int Age { get; set; }
 
-        [Display(Name = "Gender. Please Enter Male, Female, or N/A")]
+        [Display(Name = "Gender")]
 
         public string Gender { get; set; }
 

@@ -2,15 +2,37 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml"; }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
+
+
+    <a asp-action="Create">Book A Trip !</a>
 
 
 <h1>Welcome To Brad's Space Travel ! </h1>
+<br>
+<br>
+<br>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    Hello to all ! My name is Brad, and this is my travel website for space tourism. If you've ever wanted to visit space for, you've came to the right place !
+
 </p>
+<br>
+<br>
+<br>
+<br>
+<p>My website makes it simple and easy to sign up for a space trip.</p>
+<p>My agency offers different trips from the top 3 space tourism companies: SpaceX, Virgin Galactic, and Space Perspective.</p>
+<p>The trips vary in price from $150,000,000 (Mars) to $25,000 (Suborbital)</p>
+<p>SpaceX trips require a medical clearance, while the other two do not.</p>
+<p>Feel free to browse around and what my space travel company has to offer !</p>
+<p>If you're in the mood, please sign up for a trip and I will contact you shortly !</p>
+<p>Below you will find the details of your trip.</p>
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -21,10 +43,19 @@
                 @Html.DisplayNameFor(model => model.LastName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.IdentityUser)
             </th>
-           
+
         </tr>
     </thead>
-    
 </table>
+
