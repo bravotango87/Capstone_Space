@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Space.Data;
 using Space.Models;
@@ -30,7 +32,7 @@ namespace Space.Controllers
         public ActionResult Details(int id)
         {
             var customer = _context.Customers.Include(m => m.IdentityUser).SingleOrDefault();
-            return View();
+            return View(customer);
         }
 
         // GET: CustomersController/Create
@@ -42,16 +44,19 @@ namespace Space.Controllers
         // POST: CustomersController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+
+        public async Task<IActionResult> Create([Bind("CustomerId,FirstName,LastName,Trip,IdentityUserId")] Customer customer)
         {
-            try
+            if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                customer.IdentityUserId = userId;
+                _context.Add(customer);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
+            return View(customer);
         }
 
         // GET: CustomersController/Edit/5
