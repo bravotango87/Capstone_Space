@@ -34,6 +34,7 @@ namespace Space.Models
 
         [Display(Name = "Company Name")]
 
+
         public string IdentityUserId { get; set; }
 
         public IdentityUser IdentityUser { get; set; }
