@@ -23,7 +23,7 @@ namespace Space.Controllers
             return View();
         }
 
-        public IActionResult SpaceCompanies()
+        public IActionResult Privacy()
         {
             return View();
         }
