@@ -30,14 +30,8 @@ namespace Space.Models
         public string Gender { get; set; }
 
 
-        [ForeignKey("Trip")]
-
-        [Display(Name = "Company Name")]
-
-
+        [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
-
-        [Display(Name = "Destination")]
         public IdentityUser IdentityUser { get; set; }
     }
 }
