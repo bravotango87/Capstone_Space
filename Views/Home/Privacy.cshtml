@@ -5,12 +5,14 @@
 
 <p>This is an info page about the three space companies, the trips they offer.</p>
 <p>After viewing, if you find a trip you like, feel free to sign up with the link on your home page</p>
+<br>
+<br>
+<br>
+<br>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,8 +23,30 @@
 
     <div class="container">
         <h2>SpaceX</h2>
-        <p>Comany CEO: Elon Musk</p>
-        <img src="roadster.jpg" class="rounded-circle" alt="Cinque Terre" width="304" height="236">
+        <p>The private space company was founded in 2002 by CEO Elon Musk</p>
+        <p>The mission of the company is to make life multiplanetary</p>
+        <p>The company currently flys to the International Space Station, the Moon, and Mars</p>
+        <p>Click below for scheduling and pricing</p>
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">International Space Station</button>
+        <div id="demo" class="collapse">
+            Cost: $8,000,000 per person or $12,000,000 for two people
+            Launch Location: Kennedy Space Station
+            Duration: 8 days 7 nights
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Moon</button>
+        <div id="demo" class="collapse">
+            Cost: $15,000,000 per person or $21,000,000 for two people
+            Launch Location: Kennedy Space Station
+            Duration: 30 days
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Mars</button>
+        <div id="demo" class="collapse">
+            <p>Cost: $50,000,000 per person</p>
+            <p>Launch Location: Kennedy Space Station</p>
+            <p>Duration: 6 months</p>
+        </div>
     </div>
 
 </body>
