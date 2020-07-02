@@ -22,6 +22,7 @@ namespace Space.Controllers
 
 
         // GET: CustomersController
+
         public ActionResult Index()
         {
             var customers = _context.Customers.ToList();
@@ -29,15 +30,26 @@ namespace Space.Controllers
         }
 
         // GET: CustomersController/Details/5
-        public ActionResult Details(int id)
-        {
-            {
-                var customer = _context.Customers.Where(s => s.CustomerId == id).FirstOrDefault();
 
+        public async Task<IActionResult> Details(int? id)
+
+            {
+                if (id == null)
+                {
+                    return NotFound();
+                }
+
+                var customer = await _context.Customers
+                    .Include(s => s.IdentityUser)
+                    .FirstOrDefaultAsync(m => m.CustomerId == id);
+                if (customer == null)
+                {
+                    return NotFound();
+                }
 
                 return View(customer);
             }
-        }
+        
 
         // GET: CustomersController/Create
         public IActionResult Create()
