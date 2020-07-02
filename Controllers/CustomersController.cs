@@ -22,17 +22,17 @@ namespace Space.Controllers
 
 
         // GET: CustomersController
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
             var customers = _context.Customers.ToList();
             return View(customers);
         }
 
         // GET: CustomersController/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public ActionResult Details(int id)
         {
             {
-                var customer = _context.Customers.Include(c => c.IdentityUser).ToList();
+                var customer = _context.Customers.Where(s => s.CustomerId == id).FirstOrDefault();
 
 
                 return View(customer);
@@ -50,7 +50,7 @@ namespace Space.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> Create([Bind("CustomerId,FirstName,LastName,Trip,IdentityUserId")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerId,FirstName,LastName,Trip,IdentityUserId")] Customer customer, Random random)
         {
             if (ModelState.IsValid)
             {
@@ -63,6 +63,13 @@ namespace Space.Controllers
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
             return View(customer);
         }
+          
+         
+        
+        
+
+
+    
 
         // GET: CustomersController/Edit/5
         public async Task<IActionResult> Edit(int? id)

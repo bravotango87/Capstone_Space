@@ -22,7 +22,7 @@ namespace Space.Models
         [Display(Name = "Phone Number")]
         public int PhoneNumber { get; set; }
 
-        [Display(Name = "Enter Your Age")]
+        [Display(Name = "Age")]
         public int Age { get; set; }
 
         [Display(Name = "Gender")]
