@@ -11,7 +11,9 @@ namespace Space.Models
     public class Trip
     {
         [Key]
-        public int Id { get; set; }
+        public int TripId { get; set; }
+
+        public string TripKey { get; set; }
 
         public string Name { get; set; }
 

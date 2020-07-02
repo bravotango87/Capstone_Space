@@ -27,6 +27,7 @@ namespace Space.Data
                     NormalizedName = "CUSTOMER"
                 }
 
+
               );
         }
 

@@ -13,6 +13,8 @@ namespace Space.Models
         [Key]
         public int CustomerId { get; set; }
 
+        public string CustomerKey { get; set; }
+
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
