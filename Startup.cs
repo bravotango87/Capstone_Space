@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Space.ActionFilters;
+
 
 namespace Space
 {
@@ -34,8 +35,9 @@ namespace Space
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            
 
-                 services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
             options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
@@ -51,6 +53,8 @@ namespace Space
 
                 services.AddControllersWithViews();
                 services.AddRazorPages();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
