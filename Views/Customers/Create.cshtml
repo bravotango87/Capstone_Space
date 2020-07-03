@@ -4,9 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create A Profile For My Website</h1>
 
-<h4>Customer</h4>
+
+<h4>Create A Customer</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -49,7 +49,7 @@
 
 
             </select>
-            <div class="form-group">
+            <div hidden class="form-group">
                 <label asp-for="IdentityUserId" class="control-label"></label>
                 <input asp-for="IdentityUserId" class="form-control" />
                 <span asp-validation-for="IdentityUserId" class="text-danger"></span>

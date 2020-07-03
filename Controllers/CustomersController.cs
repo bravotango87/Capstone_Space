@@ -170,25 +170,29 @@ namespace Space.Controllers
 
         public IActionResult PickTrip()
         {
-            var instructors = _context.Trips.ToList();
+            var trip = _context.Trips.ToList();
+            
 
-            return View(instructors);
+            return View();
         }
 
-        public IActionResult SelectTrip(string Id)
+        public IActionResult MedicalCheck()
         {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var customer = _context.Customers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-
-            var trip = _context.Trips.Where(c => c.TripKey == Id).SingleOrDefault();
-            var tripName = trip.Name + " " + trip.Name;
-
-            _context.SaveChanges();
-
-            return View(trip);
+            var trip = _context.Trips.ToList();
 
 
+            return View();
         }
+
+        public IActionResult Daily()
+        {
+            var trip = _context.Trips.ToList();
+
+
+            return View();
+        }
+
+
     }
 }
 
