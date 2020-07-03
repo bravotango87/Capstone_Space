@@ -33,28 +33,28 @@ namespace Space.Controllers
 
         public async Task<IActionResult> Details(int? id)
 
+        {
+            if (id == null)
             {
-                if (id == null)
-                {
-                    return NotFound();
-                }
-
-                var customer = await _context.Customers
-                    .Include(s => s.IdentityUser)
-                    .FirstOrDefaultAsync(m => m.CustomerId == id);
-                if (customer == null)
-                {
-                    return NotFound();
-                }
-
-                return View(customer);
+                return NotFound();
             }
-        
+
+            var customer = await _context.Customers
+                .Include(s => s.IdentityUser)
+                .FirstOrDefaultAsync(m => m.CustomerId == id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            return View(customer);
+        }
+
 
         // GET: CustomersController/Create
         public IActionResult Create()
         {
-            
+
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
@@ -76,13 +76,13 @@ namespace Space.Controllers
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
             return View(customer);
         }
-          
-         
-        
-        
 
 
-    
+
+
+
+
+
 
         // GET: CustomersController/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -168,6 +168,27 @@ namespace Space.Controllers
             return _context.Customers.Any(e => e.CustomerId == id);
         }
 
+        public IActionResult PickTrip()
+        {
+            var instructors = _context.Trips.ToList();
 
+            return View(instructors);
+        }
+
+        public IActionResult SelectTrip(string Id)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+
+            var trip = _context.Trips.Where(c => c.TripKey == Id).SingleOrDefault();
+            var tripName = trip.Name + " " + trip.Name;
+
+            _context.SaveChanges();
+
+            return View(trip);
+
+
+        }
     }
 }
+

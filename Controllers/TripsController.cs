@@ -63,6 +63,8 @@ namespace Space.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                trip.IdentityUserId = userId;
                 _context.Add(trip);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
