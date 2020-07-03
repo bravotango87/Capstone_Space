@@ -1,74 +1,64 @@
-﻿@model Space.Models.Trip
-  
+﻿@model Space.Models.Customer
+
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Trip Form</h1>
-<h2>Fill out the interest form below</h2>
-<h2>I will contact you to discuss payments and requiremenst asap !</h2>
-<br>
-<br>
-<br>
+<h1>Create A Profile For My Website</h1>
 
+<h4>Customer</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+            
+               
             <div class="form-group">
-                <label for="Name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="first name last name">
-            </div>
-
-            <div class="form-group">
-                <label>Choose A Destination</label>
-                <br>
-
-                <select class="form-control" id="exampleSelect1">
-                    <option>International Space Station</option>
-                    <option>Moon</option>
-                    <option>Mars</option>
-                    <option>Low Earth Orbit</option>
-                    <option>Stratosphere</option>
-
-                </select>
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label>Guests</label>
-                <br>
-
-                <select class="form-control" id="exampleSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                </select>
-
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
-
-
             <div class="form-group">
-                <label for="PhoneNumber">Phone Number</label>
-                <input type="number" class="form-control" id="phonenumber" placeholder="0000000000">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <select class="form-control" id="exampleSelect1">
+
+                <option>Gender</option>
+
+                <option>Male</option>
+
+                <option>Female</option>
+
+                <option>N/A</option>
+
+                
 
 
-            <div hidden class="form-group">
+
+            </select>
+            <div class="form-group">
                 <label asp-for="IdentityUserId" class="control-label"></label>
-                <select asp-for="IdentityUserId" class="form-control" asp-items="ViewBag.IdentityUserId"></select>
+                <input asp-for="IdentityUserId" class="form-control" />
+                <span asp-validation-for="IdentityUserId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
-</div>
+    </div>
 </div>
 
 <div>
