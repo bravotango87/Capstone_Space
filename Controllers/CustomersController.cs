@@ -178,7 +178,7 @@ namespace Space.Controllers
 
         public IActionResult MedicalCheck()
         {
-            var trip = _context.Trips.ToList();
+            var medical = _context.Trips.ToList();
 
 
             return View();
@@ -186,7 +186,7 @@ namespace Space.Controllers
 
         public IActionResult Daily()
         {
-            var trip = _context.Trips.ToList();
+            var daily = _context.Trips.ToList();
 
 
             return View();
