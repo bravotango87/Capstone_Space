@@ -37,5 +37,7 @@ namespace Space.Data
         public DbSet<Trip> Trips { get; set; }
 
         public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Itinerary> Itineraries { get; set; }
     }
 }

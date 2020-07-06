@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Space.Models.Itinerary>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RequiredForms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhatToBring)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Depature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThreeWeeksPrior)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DayOfLaunch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Arrival)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhatToDo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlyingBack)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentityUser)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequiredForms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WhatToBring)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Depature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThreeWeeksPrior)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DayOfLaunch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Arrival)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WhatToDo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlyingBack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ItineraryId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ItineraryId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ItineraryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

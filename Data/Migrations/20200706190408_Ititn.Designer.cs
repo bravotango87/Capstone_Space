@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Space.Data;
 
 namespace Space.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200706190408_Ititn")]
+    partial class Ititn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +50,8 @@ namespace Space.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6bb49b48-5a77-4747-a0ad-299bf103438b",
-                            ConcurrencyStamp = "1cd176c7-8980-4986-b0c9-a3065b731ace",
+                            Id = "02f79b68-195c-4019-bf96-c56f9bc7f011",
+                            ConcurrencyStamp = "f9b6bda4-f34d-4d1b-9f46-8f49da2917dc",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -266,19 +268,16 @@ namespace Space.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Arrival")
+                    b.Property<string>("DayOfLaunch")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DayOfLaunch")
+                    b.Property<string>("DayOne")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Depature")
                         .HasColumnType("int");
 
                     b.Property<string>("Destination")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FlyingBack")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdentityUserId")
@@ -288,9 +287,6 @@ namespace Space.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThreeWeeksPrior")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WhatToBring")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WhatToDo")

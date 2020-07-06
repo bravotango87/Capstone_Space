@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Space.Data;
 
 namespace Space.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200706191007_Tghjk")]
+    partial class Tghjk
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +50,8 @@ namespace Space.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6bb49b48-5a77-4747-a0ad-299bf103438b",
-                            ConcurrencyStamp = "1cd176c7-8980-4986-b0c9-a3065b731ace",
+                            Id = "c3f1c7b0-7f78-490f-9163-3846090922eb",
+                            ConcurrencyStamp = "07cafd29-cd00-4e30-bc33-19ebeaefbda6",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -266,10 +268,10 @@ namespace Space.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Arrival")
+                    b.Property<string>("DayOfLaunch")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DayOfLaunch")
+                    b.Property<string>("DayOne")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Depature")

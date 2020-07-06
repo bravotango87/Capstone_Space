@@ -15,20 +15,37 @@ namespace Space.Models
 
         public int ItineraryId { get; set; }
 
+        public string RequiredForms { get; set; }
+
         public string Destination { get; set; }
+
+        public string WhatToBring { get; set; }
+
+        public DateFormat Depature { get; set; }
 
         public string ThreeWeeksPrior { get; set; }
 
         public string DayOfLaunch { get; set; }
 
-
-        public DateFormat Depature { get; set; }
-
-        public string RequiredForms { get; set; }
-
-        public string DayOne { get; set; }
+        public string Arrival { get; set; }
 
         public string WhatToDo { get; set; }
+
+
+        public string FlyingBack { get; set; }
+
+
+
+
+
+
+
+
+       
+
+        
+
+        
 
        [ForeignKey("IdentityUser")]
 
