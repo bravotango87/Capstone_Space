@@ -170,9 +170,7 @@ namespace Space.Controllers
 
         public IActionResult PickTrip()
         {
-            var trip = _context.Trips.ToList();
-            
-
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -186,9 +184,14 @@ namespace Space.Controllers
 
         public IActionResult Daily()
         {
-            var daily = _context.Trips.ToList();
+           
 
 
+            return View();
+        }
+
+        public IActionResult SeeItinerary()
+        {
             return View();
         }
 
