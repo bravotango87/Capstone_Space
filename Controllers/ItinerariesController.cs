@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,18 +15,18 @@ namespace Space.Controllers
 {
     public class ItinerariesController : Controller
     {
-        private readonly SpaceContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ItinerariesController(SpaceContext context)
+        public ItinerariesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // GET: Itineraries
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var spaceContext = _context.Itinerary.Include(i => i.IdentityUser);
-            return View(await spaceContext.ToListAsync());
+            
+            return View();
         }
 
         // GET: Itineraries/Details/5
@@ -35,7 +37,7 @@ namespace Space.Controllers
                 return NotFound();
             }
 
-            var itinerary = await _context.Itinerary
+            var itinerary = await _context.Itineraries
                 .Include(i => i.IdentityUser)
                 .FirstOrDefaultAsync(m => m.ItineraryId == id);
             if (itinerary == null)
@@ -49,7 +51,7 @@ namespace Space.Controllers
         // GET: Itineraries/Create
         public IActionResult Create()
         {
-            ViewData["IdentityUserId"] = new SelectList(_context.Set<IdentityUser>(), "Id", "Id");
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -66,7 +68,7 @@ namespace Space.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Set<IdentityUser>(), "Id", "Id", itinerary.IdentityUserId);
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View(itinerary);
         }
 
@@ -78,12 +80,12 @@ namespace Space.Controllers
                 return NotFound();
             }
 
-            var itinerary = await _context.Itinerary.FindAsync(id);
+            var itinerary = await _context.Itineraries.FindAsync(id);
             if (itinerary == null)
             {
                 return NotFound();
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Set<IdentityUser>(), "Id", "Id", itinerary.IdentityUserId);
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View(itinerary);
         }
 
@@ -119,7 +121,7 @@ namespace Space.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Set<IdentityUser>(), "Id", "Id", itinerary.IdentityUserId);
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View(itinerary);
         }
 
@@ -131,7 +133,7 @@ namespace Space.Controllers
                 return NotFound();
             }
 
-            var itinerary = await _context.Itinerary
+            var itinerary = await _context.Itineraries
                 .Include(i => i.IdentityUser)
                 .FirstOrDefaultAsync(m => m.ItineraryId == id);
             if (itinerary == null)
@@ -147,15 +149,17 @@ namespace Space.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var itinerary = await _context.Itinerary.FindAsync(id);
-            _context.Itinerary.Remove(itinerary);
+            var itinerary = await _context.Itineraries.FindAsync(id);
+            _context.Itineraries.Remove(itinerary);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ItineraryExists(int id)
         {
-            return _context.Itinerary.Any(e => e.ItineraryId == id);
+            return _context.Itineraries.Any(e => e.ItineraryId == id);
         }
+
+
     }
 }

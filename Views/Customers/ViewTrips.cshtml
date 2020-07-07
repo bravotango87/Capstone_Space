@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "ViewTrips";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
 <h1>ViewTrips</h1>
@@ -42,14 +42,12 @@
                 @Html.DisplayFor(modelItem => item.Destination)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LaunchLocation)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TripCost)
+                @Html.DisplayFor(modelItem => item.AmountOfGuests)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duration)
-            </td>
+            
            
             
             <td>

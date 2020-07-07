@@ -15,6 +15,8 @@ namespace Space.Controllers
     public class CustomersController : Controller
     {
         private readonly ApplicationDbContext _context;
+         
+
         public CustomersController(ApplicationDbContext context)
         {
             _context = context;
@@ -23,10 +25,10 @@ namespace Space.Controllers
 
         // GET: CustomersController
 
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            var customers = _context.Customers.ToList();
-            return View(customers);
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+            return View();
         }
 
         // GET: CustomersController/Details/5
@@ -168,34 +170,67 @@ namespace Space.Controllers
             return _context.Customers.Any(e => e.CustomerId == id);
         }
 
+
+
+       
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public async Task<IActionResult> CreateItinerary([Bind("RequiredForms,Destination,WhatToBring,Departure,ThreeWeeksPrior,DayOfLaunch,Arrival,WhatToDo,FlyingBac,IdentityUserId")] Itinerary itinerary, Random random)
+        {
+            if (ModelState.IsValid)
+            {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                itinerary.IdentityUserId = userId;
+                _context.Add(itinerary);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", itinerary.IdentityUserId);
+            return View(itinerary);
+        }
+
+
+        public IActionResult ViewItinerary()
+        {
+
+            
+            return View();
+        }
+
         public IActionResult PickTrip()
         {
+
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
-        public IActionResult MedicalCheck()
+        // Post
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+       
+        public async Task<IActionResult> PickTrip([Bind("CustomerId,Destination,Guests")] Trip trip, Random random)
         {
-            var medical = _context.Trips.ToList();
-
-
-            return View();
+            if (ModelState.IsValid)
+            {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                trip.IdentityUserId = userId;
+                _context.Add(trip);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", trip.IdentityUserId);
+            return View(trip);
         }
 
-        public IActionResult Daily()
-        {
-           
 
 
-            return View();
-        }
-
-        public IActionResult SeeItinerary()
-        {
-            return View();
-        }
 
 
     }
+
 }
 

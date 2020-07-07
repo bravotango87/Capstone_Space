@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Itinerary For Your Trip</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,18 +12,19 @@
 <table class="table">
     <thead>
         <tr>
+           
             <th>
                 @Html.DisplayNameFor(model => model.RequiredForms)
             </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Destination)
             </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.WhatToBring)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Depature)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.ThreeWeeksPrior)
             </th>
@@ -39,9 +40,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.FlyingBack)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdentityUser)
-            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -51,15 +50,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.RequiredForms)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.WhatToBring)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Depature)
+                @Html.DisplayFor(modelItem => item.Destination)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.ThreeWeeksPrior)
             </td>
@@ -75,9 +74,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.FlyingBack)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
-            </td>
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ItineraryId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ItineraryId">Details</a> |

@@ -54,8 +54,7 @@ namespace Space
                 services.AddControllersWithViews();
                 services.AddRazorPages();
 
-            services.AddDbContext<SpaceContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SpaceContext")));
+            
 
             
         }
