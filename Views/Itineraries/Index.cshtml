@@ -12,14 +12,15 @@
 <table class="table">
     <thead>
         <tr>
-           
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.RequiredForms)
             </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Destination)
-            </th>
+
 
             <th>
                 @Html.DisplayNameFor(model => model.WhatToBring)
@@ -48,6 +49,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.RequiredForms)
             </td>
 
@@ -55,9 +59,7 @@
                 @Html.DisplayFor(modelItem => item.WhatToBring)
             </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination)
-            </td>
+
 
             <td>
                 @Html.DisplayFor(modelItem => item.ThreeWeeksPrior)
@@ -78,7 +80,8 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ItineraryId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ItineraryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ItineraryId">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.ItineraryId">Delete</a> |
+                <a asp-action="Select" asp-route-id="@item.ItineraryId">Select Itinerary</a>
             </td>
         </tr>
 }

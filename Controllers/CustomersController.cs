@@ -26,11 +26,12 @@ namespace Space.Controllers
 
         // GET: CustomersController
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            var customers = _context.Customers.Include(c => c.IdentityUser);
+            return View(await customers.ToListAsync());
         }
+
 
         // GET: CustomersController/Details/5
 
@@ -232,12 +233,10 @@ namespace Space.Controllers
 
 
 
-
-        public IActionResult ViewItinerary()
+        public async Task<IActionResult> ViewItinerary()
         {
-
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            var itineraries = _context.Itineraries.Include(c => c.IdentityUser);
+            return View(await itineraries.ToListAsync());
         }
 
 

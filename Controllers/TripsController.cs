@@ -22,10 +22,10 @@ namespace Space.Controllers
         }
 
         // GET: Trips
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var customers = _context.Customers.ToList();
-            return View(customers);
+            var trips = _context.Trips.Include(c => c.IdentityUser);
+            return View(await trips.ToListAsync());
         }
 
         // GET: Trips/Details/5
