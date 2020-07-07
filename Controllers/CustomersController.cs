@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -171,8 +172,13 @@ namespace Space.Controllers
         }
 
 
+        public IActionResult CreateItinerary()
+        {
 
-       
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+            return View();
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -192,13 +198,7 @@ namespace Space.Controllers
         }
 
 
-        public IActionResult ViewItinerary()
-        {
-
-            
-            return View();
-        }
-
+        
         public IActionResult PickTrip()
         {
 
@@ -224,6 +224,40 @@ namespace Space.Controllers
             }
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", trip.IdentityUserId);
             return View(trip);
+        }
+
+
+
+
+
+
+
+
+        public IActionResult ViewItinerary()
+        {
+
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+            return View();
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+
+        public async Task<IActionResult> ViewItinerary([Bind("RequiredForms,Destination,WhatToBring,ThreeWeeksPrior,DayOfLaunch,WhatToDo,FlyingBack")] Customer customer, Random random)
+        {
+            if (ModelState.IsValid)
+            {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                customer.IdentityUserId = userId;
+                _context.Add(customer);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
+            return View(customer);
         }
 
 

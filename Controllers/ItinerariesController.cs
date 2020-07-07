@@ -23,10 +23,11 @@ namespace Space.Controllers
         }
 
         // GET: Itineraries
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
-            
-            return View();
+            var itineraries = _context.Itineraries.Include(c => c.IdentityUser);
+            return View(await itineraries.ToListAsync());
         }
 
         // GET: Itineraries/Details/5

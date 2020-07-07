@@ -31,6 +31,8 @@ namespace Space.Models
 
         public string Gender { get; set; }
 
+        public string Itinerary { get; set; }
+
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
