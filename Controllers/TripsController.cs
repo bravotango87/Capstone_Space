@@ -156,9 +156,44 @@ namespace Space.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+
         private bool TripExists(int id)
         {
             return _context.Trips.Any(e => e.TripId == id);
         }
+
+        public async Task<IActionResult> Select(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var trip = await _context.Trips
+                .Include(t => t.IdentityUser)
+                .FirstOrDefaultAsync(m => m.TripId == id);
+            if (trip == null)
+            {
+                return NotFound();
+            }
+
+            return View(trip);
+        }
+
+        [HttpPost, ActionName("Select")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SelectConfirmed(int id)
+        {
+            var trip = await _context.Trips.FindAsync(id);
+            _context.Trips.Add(trip);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+
+
     }
 }
