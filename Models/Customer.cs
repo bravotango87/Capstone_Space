@@ -33,6 +33,7 @@ namespace Space.Models
 
         public string Itinerary { get; set; }
 
+        [Display(Name ="Where Ya Goin ?")]
         
         public string Trip { get; set; }
 

@@ -36,24 +36,22 @@ namespace Space.Controllers
         // GET: CustomersController/Details/5
 
         public async Task<IActionResult> Details(int? id)
-
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var customer = await _context.Customers
-                .Include(s => s.IdentityUser)
-                .FirstOrDefaultAsync(m => m.CustomerId == id);
-            if (customer == null)
+            var trips = await _context.Trips
+                .Include(c => c.IdentityUser)
+                .FirstOrDefaultAsync(m => m.TripId == id);
+            if (trips == null)
             {
                 return NotFound();
             }
 
-            return View(customer);
+            return View(trips);
         }
-
 
         // GET: CustomersController/Create
         public IActionResult Create()
@@ -75,10 +73,10 @@ namespace Space.Controllers
                 customer.IdentityUserId = userId;
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                
             }
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
-            return View(customer);
+            return RedirectToAction(nameof(Index));
         }
 
 
@@ -219,34 +217,23 @@ namespace Space.Controllers
 
 
 
-
-
-
-        public async Task<IActionResult> ViewItinerary()
+        public IActionResult Itinerary(int id)
         {
-            var itineraries = _context.Itineraries.Include(c => c.IdentityUser);
-            return View(await itineraries.ToListAsync());
-        }
-
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-
-
-        public async Task<IActionResult> ViewItinerary([Bind("RequiredForms,Destination,WhatToBring,ThreeWeeksPrior,DayOfLaunch,WhatToDo,FlyingBack")] Customer customer, Random random)
-        {
-            if (ModelState.IsValid)
-            {
-                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                customer.IdentityUserId = userId;
-                _context.Add(customer);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
+            var customer = _context.Customers.Where(c => c.CustomerId == id).FirstOrDefault();
             return View(customer);
         }
+
+        [HttpPost]
+
+        public IActionResult Itinerary(Customer customer)
+        {
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
 
 
 

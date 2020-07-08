@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Space.Data;
 
 namespace Space.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200708215107_Gddww")]
+    partial class Gddww
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +50,8 @@ namespace Space.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "78f23b79-4be2-45b8-ae99-d782cc79ec5a",
-                            ConcurrencyStamp = "ab656c84-77e3-4589-ba41-610804e6ad39",
+                            Id = "033823ab-8160-447f-a9e6-f00ca5c03bc7",
+                            ConcurrencyStamp = "d6040d44-37ec-48b8-8cae-0fa637096a80",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
