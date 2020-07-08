@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Space.Data;
 
 namespace Space.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200708164056_Awewewe")]
+    partial class Awewewe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +50,8 @@ namespace Space.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8e2501c8-61e3-4823-92af-b42d8a401f97",
-                            ConcurrencyStamp = "efc056d1-adad-408e-89dd-f499631315f8",
+                            Id = "701548b8-4a05-4475-870b-e409e8c4f795",
+                            ConcurrencyStamp = "29e643fc-8938-426d-997a-d40805a94b47",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -255,7 +257,7 @@ namespace Space.Data.Migrations
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("Trip")
+                    b.Property<string>("PickTrip")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerId");

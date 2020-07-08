@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Space.Data;
 
 namespace Space.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200708155036_Hfdd")]
+    partial class Hfdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +50,8 @@ namespace Space.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8e2501c8-61e3-4823-92af-b42d8a401f97",
-                            ConcurrencyStamp = "efc056d1-adad-408e-89dd-f499631315f8",
+                            Id = "7db32fab-0da4-4a5e-9320-6f54db1be985",
+                            ConcurrencyStamp = "a93a9032-1316-4266-9bda-530ad26ba84f",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -254,9 +256,6 @@ namespace Space.Data.Migrations
 
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("int");
-
-                    b.Property<string>("Trip")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerId");
 

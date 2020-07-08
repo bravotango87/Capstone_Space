@@ -1,0 +1,49 @@
+﻿@model Space.Models.Customer
+
+@{
+    ViewData["Title"] = "SelectItinerary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>SelectItinerary</h1>
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SelectItinerary">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="form-group">
+                <label asp-for="Itinerary" class="control-label"></label>
+                <select id="Itinerary" name="Select one of the documents to submit">
+                    <option value="Passport">Passport</option>
+                    <option value="Birth Certificate">Birth Certificate</option>
+                    <option value="Drivers License">Drivers License</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Itinerary" class="control-label"></label>
+                <select id="Itinerary" name="Select one of the documents to submit">
+                    <option value="Passport">Passport</option>
+                    <option value="Birth Certificate">Birth Certificate</option>
+                    <option value="Drivers License">Drivers License</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

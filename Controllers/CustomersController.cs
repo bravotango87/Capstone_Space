@@ -200,33 +200,22 @@ namespace Space.Controllers
 
 
         
-        public IActionResult PickTrip()
+        public IActionResult PickTrip(int id)
         {
-
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            var customer = _context.Customers.Where(c => c.CustomerId == id).FirstOrDefault();
+            return View(customer);
         }
 
         // Post
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-
        
-        public async Task<IActionResult> PickTrip([Bind("CustomerId,Destination,Guests")] Trip trip, Random random)
+        public IActionResult PickTrip(Customer customer)
         {
-            if (ModelState.IsValid)
-            {
-                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                trip.IdentityUserId = userId;
-                _context.Add(trip);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", trip.IdentityUserId);
-            return View(trip);
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
-
 
 
 
@@ -258,6 +247,8 @@ namespace Space.Controllers
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
             return View(customer);
         }
+
+
 
 
 

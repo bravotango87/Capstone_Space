@@ -162,5 +162,15 @@ namespace Space.Controllers
         }
 
 
+        public ActionResult Select(int id)
+        {
+            var itinerary
+                = _context.Customers.Where(c => c.CustomerId == id).FirstOrDefault();
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 }
