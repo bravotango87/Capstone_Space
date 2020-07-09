@@ -31,6 +31,8 @@ namespace Space.Models
 
         public string Gender { get; set; }
 
+        public int Guests { get; set; }
+
         public string Itinerary { get; set; }
 
         [Display(Name ="Where Ya Goin ?")]
